@@ -1,5 +1,6 @@
 package lesson_1
 
 fun main() {
-    println("Решение первой задачи")
+    val countOrder: Int = 75
+    var textWithThanks: String = "Thank you for your products"
 }
