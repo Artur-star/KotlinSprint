@@ -1,16 +1,15 @@
 package lesson_1
 
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+const val TRANSFER_OF_UNITS = 60
 
 fun main() {
     val numberOfSecondsInSpace = 6480
-    val numberOfMinutesInSpace = numberOfSecondsInSpace / 60
-    val remainingMinutes = numberOfMinutesInSpace % 60
-    val numberOfHoursInSpace = numberOfMinutesInSpace / 60
-    val remainingSeconds = numberOfSecondsInSpace % 60
+    val numberOfMinutesInSpace = numberOfSecondsInSpace / TRANSFER_OF_UNITS
+    val remainingMinutes = numberOfMinutesInSpace % TRANSFER_OF_UNITS
+    val numberOfHoursInSpace = numberOfMinutesInSpace / TRANSFER_OF_UNITS
+    val remainingSeconds = numberOfSecondsInSpace % TRANSFER_OF_UNITS
 
-    val timeInSpace = LocalTime.of(numberOfHoursInSpace, remainingMinutes, remainingSeconds).format(DateTimeFormatter.ISO_LOCAL_TIME)
+    val timeInSpace = String.format("0%d:%d:0%d", numberOfHoursInSpace, remainingMinutes, remainingSeconds)
 
     println(timeInSpace)
 }
