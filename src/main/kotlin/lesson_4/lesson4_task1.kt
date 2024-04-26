@@ -7,9 +7,9 @@ fun main() {
     val reservedTablesTomorrow = 9
 
     println(
-        "Доступность столиков на сегодня: " +
+        "Availability of tables for today: " +
                 "${TOTAL_TABLES - reservedTablesToday > 0}\n" +
-                "Доступность столиков на завтра: " +
+                "Availability of tables for tomorrow: " +
                 "${TOTAL_TABLES - reservedTablesTomorrow > 0}"
     )
 }
