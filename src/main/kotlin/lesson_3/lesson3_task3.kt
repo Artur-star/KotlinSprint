@@ -1,18 +1,18 @@
 package lesson_3
 
 fun main() {
-    val figure = 6
+    val number = 6
 
     val printMultiplication = """
-        |$figure * 1 = ${figure * 1}
-        |$figure * 2 = ${figure * 2}
-        |$figure * 3 = ${figure * 3}
-        |$figure * 4 = ${figure * 4}
-        |$figure * 5 = ${figure * 5}
-        |$figure * 6 = ${figure * 6}
-        |$figure * 7 = ${figure * 7}
-        |$figure * 8 = ${figure * 8}
-        |$figure * 9 = ${figure * 9}
+        |$number * 1 = ${number * 1}
+        |$number * 2 = ${number * 2}
+        |$number * 3 = ${number * 3}
+        |$number * 4 = ${number * 4}
+        |$number * 5 = ${number * 5}
+        |$number * 6 = ${number * 6}
+        |$number * 7 = ${number * 7}
+        |$number * 8 = ${number * 8}
+        |$number * 9 = ${number * 9}
     """.trimMargin()
 
     println(printMultiplication)
