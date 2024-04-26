@@ -2,9 +2,7 @@ package lesson3
 
 fun main() {
     val moveInChess = "D2-D4;0"
-
-    val regex = "[-;\\s]+".toRegex()
-    val parser = moveInChess.split(regex)
+    val parser = moveInChess.split("-", ";")
 
     val from = parser[0]
     val to = parser[1]
