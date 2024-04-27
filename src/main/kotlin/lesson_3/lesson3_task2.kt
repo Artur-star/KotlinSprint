@@ -6,15 +6,10 @@ fun main() {
     val patronymic = "Sergeevna"
     var age = 20
 
-    if(age>=22) {
-        surname = "Sidorova"
-        println("$surname $name $patronymic, $age")
-    } else println("$surname $name $patronymic, $age")
+    println("$surname $name $patronymic, $age")
 
     age = 22
+    surname = "Sidorova"
 
-    if(age>=22) {
-        surname = "Sidorova"
-        println("$surname $name $patronymic, $age")
-    } else println("$surname $name $patronymic, $age")
+    println("$surname $name $patronymic, $age")
 }
