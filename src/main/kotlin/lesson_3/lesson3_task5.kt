@@ -1,4 +1,4 @@
-package lesson3
+package lesson_3
 
 fun main() {
     val moveInChess = "D2-D4;0"
