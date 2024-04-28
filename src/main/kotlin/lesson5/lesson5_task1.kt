@@ -6,10 +6,10 @@ fun main() {
 
     print("Чему равно выражение $firstNumber + $secondNumber = ")
 
-    val answerUser = readLine()?.toInt()
+    val answerUser = readln().toInt()
 
     val result = firstNumber + secondNumber
 
-    if (answerUser==result) println("Добро пожаловать!")
+    if (answerUser == result) println("Добро пожаловать!")
     else println("Доступ запрещен")
 }
