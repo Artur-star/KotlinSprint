@@ -5,8 +5,8 @@ fun main() {
     val numberTwo = 15
 
     print("Введите два числа от 0 до 42: ")
-    val firstNumberUser = readLine()?.toInt()
-    val secondNumberUser = readLine()?.toInt()
+    val firstNumberUser = readln().toInt()
+    val secondNumberUser = readln().toInt()
 
     if ((firstNumberUser == numberOne || firstNumberUser == numberTwo) &&
         (secondNumberUser == numberOne || secondNumberUser == numberTwo)
