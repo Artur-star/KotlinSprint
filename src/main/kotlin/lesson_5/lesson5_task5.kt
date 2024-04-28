@@ -8,7 +8,7 @@ fun main() {
     val threeRandomNumber: Int = (minNumber..maxNumber).random()
 
     val listRandomNumbers = listOf(firstRandomNumber, secondRandomNumber, threeRandomNumber)
-    val listUserNumbers = listOf(readLine()?.toInt(), readLine()?.toInt(), readLine()?.toInt())
+    val listUserNumbers = listOf(readln().toInt(), readln().toInt(), readln().toInt())
     val intersect = listRandomNumbers.intersect(listUserNumbers)
 
     when (intersect.size) {
