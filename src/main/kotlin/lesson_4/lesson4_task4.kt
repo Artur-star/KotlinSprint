@@ -1,30 +1,13 @@
 package lesson_4
 
 fun main() {
-    var trainingDay = 1
-    val hands: Boolean
-    val legs: Boolean
-    val back: Boolean
-    val press: Boolean
+    val trainingDay = 2
 
-    if (trainingDay % 2 == 0) {
-        hands = false
-        press = false
-        legs = true
-        back = true
-        trainingDay++
-    } else {
-        hands = true
-        press = true
-        legs = false
-        back = false
-        trainingDay++
-    }
     println(
-        """|Exercises for the hands: $hands
-           |Exercises for the press: $press
-           |Exercises for the legs: $legs
-           |Exercises for the back: $back
+        """|Exercises for the hands: ${trainingDay % 2 == 0}
+           |Exercises for the press: ${trainingDay % 2 == 0}
+           |Exercises for the legs:  ${trainingDay % 2 != 0}
+           |Exercises for the back:  ${trainingDay % 2 != 0}
         """.trimMargin()
     )
 
