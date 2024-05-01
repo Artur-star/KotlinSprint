@@ -1,4 +1,4 @@
-package lesson5
+package lesson_5
 
 fun main() {
     print("Введите имя пользователя: ")
