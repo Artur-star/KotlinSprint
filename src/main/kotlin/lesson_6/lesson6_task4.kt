@@ -14,18 +14,16 @@ fun main() {
         Вводите значения: 
     """.trimIndent()
     )
-    var enterUser = readln().toInt()
-    counter++
-    while (intRange != enterUser && counter < TOTAL_NUMBER_ATTEMPTS) {
-
-        println("Неверно, осталось ${TOTAL_NUMBER_ATTEMPTS - counter}")
-        counter++
-        enterUser = readln().toInt()
+    do {
+        val enterUser = readln().toInt()
         if (intRange == enterUser) {
             println("Это была великолепная игра!")
+            break
         }
-        if (TOTAL_NUMBER_ATTEMPTS - counter == 0) {
-            println("Было загадано число $intRange")
+        if (TOTAL_NUMBER_ATTEMPTS - ++counter == 0) {
+            println("\nБыло загадано число $intRange")
+            break
         }
-    }
+        println("Неверно, осталось ${TOTAL_NUMBER_ATTEMPTS - counter}")
+    } while (counter < TOTAL_NUMBER_ATTEMPTS)
 }
