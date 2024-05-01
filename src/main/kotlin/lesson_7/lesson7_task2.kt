@@ -1,28 +1,22 @@
 package lesson_7
 
 fun main() {
-    var randomNumber = (1000..9999).random()
+    val range = 1000..9999
 
-    print(
-        """
-        |Ваш код авторизации $randomNumber
-        |Введите код: 
-    """.trimMargin()
-    )
-
-    var userInput = readln().toInt()
-
-    while (userInput != randomNumber) {
-        println("Код введен неверно, повторите попытку\n")
-        randomNumber = (1000..9999).random()
+    do {
+        val randomNumber = range.random()
         print(
             """
         |Ваш код авторизации $randomNumber
         |Введите код: 
     """.trimMargin()
         )
-        userInput = readln().toInt()
+        val userInput = readln().toInt()
+        if(userInput != randomNumber) {
+            println("Код введен неверно, повторите попытку\n")
+        }
     }
+    while (userInput != randomNumber)
 
     println("Добро пожаловать!")
 }
