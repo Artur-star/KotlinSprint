@@ -4,9 +4,8 @@ fun main() {
     print("Сколько секунд нужно засечь: ")
     val enterUser = readln().toInt()
 
-    for (i in enterUser downTo 0) {
+    for (i in enterUser downTo 1) {
         println(i)
-        if (i == 0) break
         Thread.sleep(1000)
     }
     println("Время вышло")
