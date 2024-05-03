@@ -1,21 +1,21 @@
 package lesson_4
 
-const val SUNNY_WEATHER = true
-const val ROOF_OPEN = true
-const val AIR_HUMIDITY_REQUIRED = 20
-const val TIME_YEAR = "notWinter"
+const val SUNNY = true
+const val AWNING_OPEN = true
+const val AIR_HUMIDITY = 20
+const val TIME_YEAR = "spring"
 
 fun main() {
-    val weatherToday = true
-    val roofOpenNow = true
+    val isSunny = true
+    val isAwningOpen = true
     val airHumidityNow = 20
-    val currentTimeOfYear = "notWinter"
+    val currentTimeOfYear = "winter"
 
     println(
         "Are the conditions favorable for the growth of legumes now? " +
                 "${
-                    SUNNY_WEATHER == weatherToday && ROOF_OPEN == roofOpenNow &&
-                            AIR_HUMIDITY_REQUIRED == airHumidityNow && TIME_YEAR == currentTimeOfYear
+                    SUNNY == isSunny && AWNING_OPEN == isAwningOpen &&
+                            AIR_HUMIDITY == airHumidityNow && TIME_YEAR == currentTimeOfYear
                 }"
     )
 }
