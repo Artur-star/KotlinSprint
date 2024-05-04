@@ -6,13 +6,12 @@ fun main() {
     print("Введите количество порций: ")
     val userRequest = readln().toInt()
 
-    for (i in listForOneServing) {
-        listForOneServing[listForOneServing.indexOf(i)] = i * userRequest
-    }
+    val totalNumberIngredients = listForOneServing.map { it * userRequest }
+
     println(
         "На $userRequest порций вам понадобится: " +
-                "Яиц – ${listForOneServing[0]}, " +
-                "молока – ${listForOneServing[1]}, " +
-                "сливочного масла – ${listForOneServing[2]}"
+                "Яиц – ${totalNumberIngredients[0]}, " +
+                "молока – ${totalNumberIngredients[1]}, " +
+                "сливочного масла – ${totalNumberIngredients[2]}"
     )
 }
