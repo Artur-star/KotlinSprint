@@ -9,14 +9,14 @@ fun main() {
     }
 
     print("\nКакой ингридиент ты хочешь найти: ")
-    val userRequest = readln()
+    val numberOfIngredient = listIngredients.indexOf(readln())
 
-    if (listIngredients.contains(userRequest)) {
-        println("Каким ингридиентом ты его хочешь заменить: ")
-        listIngredients[listIngredients.indexOf(userRequest)] = readln()
-        println("Готово! Вы сохранили следующий список: ")
-        for (i in 0..listIngredients.indexOf(listIngredients.max())) {
-            println(listIngredients[i])
+        if (numberOfIngredient == -1) {
+            println("Такого ингредиента в рецепте нет")
+        } else {
+            println("Каким ингридиентом ты его хочешь заменить: ")
+            listIngredients[numberOfIngredient] = readln()
         }
-    } else println("Такого ингредиента в рецепте нет")
+    println("Готово! Вы сохранили следующий список: ")
+    println(listIngredients.joinToString())
 }
