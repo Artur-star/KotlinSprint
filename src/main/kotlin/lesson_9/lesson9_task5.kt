@@ -6,12 +6,12 @@ fun main() {
     var requestUser: String
     while (setIngredients.size != 5) {
         requestUser = readln()
-        if (requestUser in setIngredients) {
-            println("Такой продукт уже был")
-        }
-        setIngredients.add(requestUser)
+        if (requestUser.isNotEmpty()) {
+            if(!setIngredients.add(requestUser)) {
+                println("Такой продукт уже был")
+            }
+        } else println("Вы ввели пустую строку")
     }
     val sortedIngredients = setIngredients.sorted().toMutableList()
-    sortedIngredients[0] = sortedIngredients[0].replaceFirstChar { it.uppercase() }
-    println(sortedIngredients.joinToString())
+    println(sortedIngredients.joinToString().replaceFirstChar { it.uppercase() })
 }
