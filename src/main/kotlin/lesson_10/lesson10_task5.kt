@@ -4,28 +4,22 @@ const val LOGIN = "loginlogin"
 const val PASSWORD = "1a2sj6h5nf"
 
 fun main() {
-    println(getBasket(authorizeUser("loginlogin", "12sj6h5nf")))
+    println(getBasket(authorizeUser("loginlogin", "1a2sj6h5nf")))
 }
 
-fun authorizeUser(login: String, password: String): String? {
-    val tokenList: MutableList<String> = mutableListOf()
-    val rangeInt = (0..9)
-    val rangeChar = ('a'..'z')
-    var token: String? = null
+fun authorizeUser(login: String, password: String): String {
+    var token = ""
     if (login == LOGIN && password == PASSWORD) {
-        tokenList.add(0, "${rangeChar.random()}")
-        tokenList.add(1, "${rangeInt.random()}")
-        for (i in 2..32) {
-            tokenList.add(i, "${rangeChar.random()}${rangeInt.random()}".random().toString())
+        for (i in 0..32) {
+            token += ((0..9) + ('a'..'z') + ('A'..'Z')).random().toString()
         }
-        token = tokenList.shuffled().joinToString(prefix = "", postfix = "", separator = "")
     }
     return token
 }
 
 fun getBasket(token: String?): MutableList<String>? {
     val contentsBasket: MutableList<String> = mutableListOf()
-    return if (token == null) {
+    return if (token!!.isEmpty()) {
         println("Пароль или логин введены неверны")
         contentsBasket.ifEmpty { null }
     } else {
