@@ -1,11 +1,11 @@
 package lesson_12
 
-const val COEF_CELSIUS_KELVIN = 273.15
+const val COEF_CELSIUS_KELVIN1 = 273.15
 
 class Weather4(_daytimeTemperature: Int, _nightTemperature: Int, _isRainfall: Boolean) {
 
-    val daytimeTemperature: Int = (_daytimeTemperature + COEF_CELSIUS_KELVIN).toInt()
-    val nightTemperature = (_nightTemperature + COEF_CELSIUS_KELVIN).toInt()
+    val daytimeTemperature: Int = (_daytimeTemperature + COEF_CELSIUS_KELVIN1).toInt()
+    val nightTemperature = (_nightTemperature + COEF_CELSIUS_KELVIN1).toInt()
     val isRainfall = _isRainfall
 
     init {
