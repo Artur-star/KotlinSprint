@@ -6,7 +6,7 @@ class PhoneDirectory2(
     val company: Company? = null,
 ) {
     override fun toString(): String {
-        return "- name: $name\n- phoneNumber: $phoneNumber\n- company: ${company ?: "<не указан>"}\n"
+        return "- name: $name\n- phoneNumber: $phoneNumber\n- company: ${company ?: "<не указано>"}\n"
     }
 }
 
