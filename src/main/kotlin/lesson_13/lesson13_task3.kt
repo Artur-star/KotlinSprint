@@ -1,9 +1,9 @@
 package lesson_13
 
 class PhoneDirectory2(
-    var name: String,
-    var phoneNumber: Long,
-    var company: Company?,
+    val name: String,
+    val phoneNumber: Long,
+    val company: Company? = null,
 ) {
     override fun toString(): String {
         return "- name: $name\n- phoneNumber: $phoneNumber\n- company: ${company ?: "<не указано>"}\n"
@@ -23,5 +23,5 @@ fun main() {
     listContact.add(PhoneDirectory2("Artur3", 88007777777, Company("Google")))
     listContact.add(PhoneDirectory2("Artur4", 88005554433, Company("Ozon")))
 
-    println(listContact.map { it.company }.filterNotNull().map { it.name }.filter { it != "null" })
+    println(listContact.mapNotNull { it.company })
 }
