@@ -1,14 +1,16 @@
 package lesson_13
 
 class PhoneDirectory(
-    var name: String,
-    var phoneNumber: Long,
-    var company: String?,
+    val name: String,
+    val phoneNumber: Long,
+    val company: Company?,
 ) {
     override fun toString(): String {
         return "PhoneDirectory(name='$name', phoneNumber=$phoneNumber, company=$company)"
     }
 }
+
+class Company
 
 fun main() {
     val phoneDirectory = PhoneDirectory("as", 3232, null)
