@@ -2,7 +2,7 @@ package lesson_13
 
 class PhoneDirectory4(
     val name: String,
-    val phoneNumber: Long? = 81001112233,
+    val phoneNumber: Long? = null,
     val company: Company4? = null,
 ) {
     override fun toString(): String {
