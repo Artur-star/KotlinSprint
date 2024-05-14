@@ -1,8 +1,10 @@
 package lesson_13
 
+const val CREATE_CONTACT = "yes"
+
 class PhoneDirectory4(
     val name: String,
-    val phoneNumber: Long? = null,
+    val phoneNumber: Long,
     val company: Company4? = null,
 ) {
     override fun toString(): String {
@@ -28,7 +30,7 @@ fun main() {
             listPhoneNumbers.add(PhoneDirectory4(name, number, Company4(company)))
         } else println("Введите номер телефона, контакт не попадает в телефонную книгу")
         println("Создать контакт? yes/no")
-    } while (readln() == "yes")
+    } while (readln().equals(CREATE_CONTACT, ignoreCase = true))
 
-    println("Телефонная книга:\n " + listPhoneNumbers.joinToString(prefix = "", postfix = "", separator = ", \n"))
+    println("Телефонная книга:\n${listPhoneNumbers.joinToString(prefix = "", postfix = "", separator = ", \n")}")
 }
