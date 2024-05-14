@@ -2,11 +2,11 @@ package lesson_13
 
 class PhoneDirectory5(
     val name: String,
-    val phoneNumber: Long? = null,
+    val phoneNumber: Long,
     val company: Company1? = null,
 ) {
     override fun toString(): String {
-        return "\n- name: $name\n- phoneNumber: ${phoneNumber ?: "Введите номер телефона, контакт не попадет в телефонную книгу"}\n- company: ${company?.name}"
+        return "\n- name: $name\n- phoneNumber: $phoneNumber\n- company: ${company?.name}"
     }
 }
 
