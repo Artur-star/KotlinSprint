@@ -1,14 +1,20 @@
 package lesson_15
 
 abstract class Person(
-    protected val listMessages: MutableList<String> = mutableListOf(),
+    val listMessages: MutableList<String>,
     val name: String,
 ) {
-    abstract fun readAll()
+    open fun readAll() {
+        println(listMessages.joinToString(prefix = "", postfix = "", separator = "; "))
+    }
 
-    abstract fun read(indexMessage: Int): String
+    open fun read(indexMessage: Int): String {
+        return listMessages[indexMessage]
+    }
 
-    abstract fun write(message: String)
+    open fun write(message: String) {
+        listMessages.add(message)
+    }
 
     override fun toString(): String {
         return "Person(name='$name')"
@@ -16,25 +22,12 @@ abstract class Person(
 }
 
 class User(
-    listMessages: MutableList<String>,
+    listMessages: MutableList<String> = mutableListOf(),
     name: String,
-) : Person(listMessages, name) {
-
-    override fun readAll() {
-        println(listMessages.joinToString(prefix = "", postfix = "", separator = "; "))
-    }
-
-    override fun read(indexMessage: Int): String {
-        return listMessages[indexMessage]
-    }
-
-    override fun write(message: String) {
-        listMessages.add(message)
-    }
-}
+) : Person(listMessages, name)
 
 class Administrator(
-    listMessages: MutableList<String>,
+    listMessages: MutableList<String> = mutableListOf(),
     private val listUsers: MutableList<User> = mutableListOf(),
     name: String,
 ) : Person(listMessages, name) {
@@ -49,18 +42,6 @@ class Administrator(
 
     fun deleteMessage(removeMessage: Int) {
         listMessages.removeAt(removeMessage)
-    }
-
-    override fun read(indexMessage: Int): String {
-        return listMessages[indexMessage]
-    }
-
-    override fun readAll() {
-        println(listMessages.joinToString(prefix = "", postfix = "", separator = ", "))
-    }
-
-    override fun write(message: String) {
-        listMessages.add(message)
     }
 }
 
@@ -87,7 +68,7 @@ fun main() {
     userArtur.readAll()
 
     //записывает и удаляет сообщения, а также удаляет пользователя администратор Алекс
-    administrator.write("Извините, необходимо удалить сообщение Ивана из чата")
+    administrator.write("Извините, необходимо удалить сообщение Ивана из чата, а также пользователь Ивана")
     administrator.deleteMessage(listMessages.indexOf("Здравствуй, друг"))
     administrator.deleteUsers(listUsers.indexOf(userIvan))
 
