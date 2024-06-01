@@ -1,18 +1,17 @@
 package lesson_15
 
 abstract class Person(
-    val listMessages: MutableList<String>,
     val name: String,
 ) {
-    open fun readAll() {
+    open fun readAll(listMessages: MutableList<String>) {
         println(listMessages.joinToString(prefix = "", postfix = "", separator = "; "))
     }
 
-    open fun read(indexMessage: Int): String {
+    open fun read(indexMessage: Int, listMessages: MutableList<String>): String {
         return listMessages[indexMessage]
     }
 
-    open fun write(message: String) {
+    open fun write(message: String, listMessages: MutableList<String>) {
         listMessages.add(message)
     }
 
@@ -22,25 +21,22 @@ abstract class Person(
 }
 
 class User(
-    listMessages: MutableList<String> = mutableListOf(),
     name: String,
-) : Person(listMessages, name)
+) : Person(name)
 
 class Administrator(
-    listMessages: MutableList<String> = mutableListOf(),
-    private val listUsers: MutableList<User> = mutableListOf(),
     name: String,
-) : Person(listMessages, name) {
+) : Person(name) {
 
-    fun deleteUsers(removeUser: Int) {
+    fun deleteUsers(removeUser: Int, listUsers: MutableList<User>) {
         listUsers.removeAt(removeUser)
     }
 
-    fun addUser(user: User) {
+    fun addUser(user: User, listUsers: MutableList<User>) {
         listUsers.add(user)
     }
 
-    fun deleteMessage(removeMessage: Int) {
+    fun deleteMessage(removeMessage: Int, listMessages: MutableList<String>) {
         listMessages.removeAt(removeMessage)
     }
 }
@@ -49,31 +45,34 @@ fun main() {
     val listUsers = mutableListOf<User>()
     val listMessages = mutableListOf<String>()
 
-    val userArtur = User(listMessages, "Артур")
-    val userIvan = User(listMessages, "Иван")
-    val administrator = Administrator(listMessages, listUsers, "Алекс")
+    val userArtur = User("Артур")
+    val userIvan = User("Иван")
+    val administrator = Administrator("Алекс")
 
     //Администратор добавил пользователей
-    administrator.addUser(userArtur)
-    administrator.addUser(userIvan)
+    administrator.addUser(userArtur, listUsers)
+    administrator.addUser(userIvan, listUsers)
 
     //записываем и считываем сообщения пользователей
-    userArtur.write("Всем здравствуйте!")
+    userArtur.write("Всем здравствуйте!", listMessages)
 
-    userIvan.read(listMessages.indexOf("Всем здравствуйте!"))
-    userIvan.write("Здравствуй, друг")
+    userIvan.read(listMessages.indexOf("Всем здравствуйте!"), listMessages)
+    userIvan.write("Здравствуй, друг", listMessages)
     println("Пользователь ${userArtur.name} выводит весь список сообщения")
 
     //считываем все сообщения
-    userArtur.readAll()
+    userArtur.readAll(listMessages)
 
     //записывает и удаляет сообщения, а также удаляет пользователя администратор Алекс
-    administrator.write("Извините, необходимо удалить сообщение Ивана из чата, а также пользователь Ивана")
-    administrator.deleteMessage(listMessages.indexOf("Здравствуй, друг"))
-    administrator.deleteUsers(listUsers.indexOf(userIvan))
+    administrator.write(
+        "Извините, необходимо удалить сообщение Ивана из чата, а также пользователь Ивана",
+        listMessages
+    )
+    administrator.deleteMessage(listMessages.indexOf("Здравствуй, друг"), listMessages)
+    administrator.deleteUsers(listUsers.indexOf(userIvan), listUsers)
 
     println("\nВесь список сообщений")
-    userIvan.readAll()
+    userIvan.readAll(listMessages)
 
     //список пользователей
     println("\nВесь список пользователей")
