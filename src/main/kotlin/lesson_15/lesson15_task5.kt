@@ -6,64 +6,50 @@ const val MAX_LOAD_IN_TRUCK = 2
 
 interface Shipping {
     fun loadCargo(cargo: Int, countCargo: MutableList<Int>)
-    fun unloadCargo(cargo: Int, countCargo: MutableList<Int>)
+    fun unloadCargo(countCargo: MutableList<Int>)
 }
 
 interface PassengerTransportation {
     fun loadPassengers(passenger: Int, listPassengers: MutableList<Int>)
-    fun unloadPassengers(passenger: Int, listPassengers: MutableList<Int>)
+    fun unloadPassengers(listPassengers: MutableList<Int>)
 }
 
 interface MovementCars {
-    fun move()
+    fun move(movement: Boolean) = false
 }
 
-class Truck(
-    var movement: Boolean = false
-) : Shipping, PassengerTransportation, MovementCars {
+class Truck : Shipping, PassengerTransportation, MovementCars {
 
     override fun loadCargo(cargo: Int, countCargo: MutableList<Int>) {
-        if (cargo <= MAX_LOAD_IN_TRUCK) {
-            countCargo.add(cargo)
-        } else countCargo.add(MAX_LOAD_IN_TRUCK)
+        if (cargo <= MAX_LOAD_IN_TRUCK) countCargo.add(cargo)
     }
 
-    override fun unloadCargo(cargo: Int, countCargo: MutableList<Int>) {
-        countCargo.remove(cargo)
+    override fun unloadCargo(countCargo: MutableList<Int>) {
+        countCargo.removeLast()
     }
 
     override fun loadPassengers(passenger: Int, listPassengers: MutableList<Int>) {
-        if (passenger <= MAX_NUMBER_PASSENGERS_IN_TRUCK) {
-            listPassengers.add(passenger)
-        } else listPassengers.add(MAX_NUMBER_PASSENGERS_IN_TRUCK)
+        if (passenger <= MAX_NUMBER_PASSENGERS_IN_TRUCK) listPassengers.add(passenger)
     }
 
-    override fun unloadPassengers(passenger: Int, listPassengers: MutableList<Int>) {
-        listPassengers.remove(passenger)
+    override fun unloadPassengers(listPassengers: MutableList<Int>) {
+        listPassengers.removeLast()
     }
 
-    override fun move() {
-        movement = true
-    }
+    override fun move(movement: Boolean) = movement
 }
 
-class PassengerCar(
-    var movement: Boolean = false
-) : PassengerTransportation, MovementCars {
+class PassengerCar : PassengerTransportation, MovementCars {
 
     override fun loadPassengers(passenger: Int, listPassengers: MutableList<Int>) {
-        if (passenger <= MAX_NUMBER_PASSENGERS_IN_PASSENGER_CAR) {
-            listPassengers.add(passenger)
-        } else listPassengers.add(MAX_NUMBER_PASSENGERS_IN_PASSENGER_CAR)
+        if (passenger <= MAX_NUMBER_PASSENGERS_IN_PASSENGER_CAR) listPassengers.add(passenger)
     }
 
-    override fun unloadPassengers(passenger: Int, listPassengers: MutableList<Int>) {
-        listPassengers.remove(passenger)
+    override fun unloadPassengers(listPassengers: MutableList<Int>) {
+        listPassengers.removeLast()
     }
 
-    override fun move() {
-        movement = true
-    }
+    override fun move(movement: Boolean) = movement
 }
 
 fun main() {
@@ -79,30 +65,26 @@ fun main() {
 
     kamaz.loadCargo(2, countCargo)
     kamaz.loadPassengers(1, listPassengers)
-    kamaz.move()
-
-    if (kamaz.movement) {
+    if (kamaz.move(true)) {
         numberPassengersTransported.addAll(listPassengers)
-        kamaz.unloadPassengers(1, listPassengers)
+        kamaz.unloadPassengers(listPassengers)
         numberCargoTransported.addAll(countCargo)
-        kamaz.unloadCargo(2, countCargo)
+        kamaz.unloadCargo(countCargo)
     }
 
     val ladaGranta = PassengerCar()
 
     ladaGranta.loadPassengers(3, listPassengers)
-    ladaGranta.move()
-    if (ladaGranta.movement) {
+    if (ladaGranta.move(true)) {
         numberPassengersTransported.addAll(listPassengers)
-        ladaGranta.unloadPassengers(3, listPassengers)
+        ladaGranta.unloadPassengers(listPassengers)
     }
 
     val ladaVesta = PassengerCar()
     ladaVesta.loadPassengers(2, listPassengers)
-    ladaVesta.move()
-    if (ladaVesta.movement) {
+    if (ladaVesta.move(true)) {
         numberPassengersTransported.addAll(listPassengers)
-        ladaVesta.unloadPassengers(2, listPassengers)
+        ladaVesta.unloadPassengers(listPassengers)
     }
 
     println("Количество перевезенных пассажиров: ${numberPassengersTransported.sum()}")
