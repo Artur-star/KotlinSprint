@@ -1,7 +1,7 @@
 package lesson_16
 
 class User(
-    val login: String,
+    private val login: String,
     private val password: String,
 ) {
     fun checkValidation(password: String) = this.password == password
