@@ -55,8 +55,6 @@ class PassengerCar : PassengerTransportation {
     override fun move() {
         println("Легковой автомобиль начал двигаться")
     }
-
-    fun move(movement: Boolean) = movement
 }
 
 fun main() {
@@ -69,10 +67,13 @@ fun main() {
     kamaz.loadPassengers(1)
     if (kamaz.countPassengers != 0) {
         numberPassengersTransported.add(kamaz.countPassengers)
+        kamaz.move()
+        println("Перевезли пассажиров: ${numberPassengersTransported.sum()}")
         kamaz.unloadPassengers()
     }
     if (kamaz.countCargo != 0) {
         numberCargoTransported.add(kamaz.countCargo)
+        println("Перевезли груза: ${numberCargoTransported.sum()}")
         kamaz.unloadCargo()
     }
 
@@ -81,6 +82,8 @@ fun main() {
     ladaGranta.loadPassengers(3)
     if (ladaGranta.listPassengers != 0) {
         numberPassengersTransported.add(ladaGranta.listPassengers)
+        ladaGranta.move()
+        println("Перевезли пассажиров: ${numberPassengersTransported.sum()}")
         ladaGranta.unloadPassengers()
     }
 
@@ -88,9 +91,11 @@ fun main() {
     ladaVesta.loadPassengers(2)
     if (ladaVesta.listPassengers != 0) {
         numberPassengersTransported.add(ladaVesta.listPassengers)
+        ladaVesta.move()
+        println("Перевезли пассажиров: ${numberPassengersTransported.sum()}\n")
         ladaVesta.unloadPassengers()
     }
 
-    println("Количество перевезенных пассажиров: ${numberPassengersTransported.sum()}")
-    println("Количество перевезенного груза: ${numberCargoTransported.sum()} (тонн)")
+    println("Итого перевезли: ${numberPassengersTransported.sum()} пассажиров")
+    println("Итого перевезли груза: ${numberCargoTransported.sum()} (тонн)")
 }
