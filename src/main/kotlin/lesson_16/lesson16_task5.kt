@@ -9,32 +9,34 @@ class Player(
 ) {
     fun takeDamage(damage: Int) {
         val absDamage = abs(damage)
-        if (playerDeath()) {
+        if (isPlayerDead()) {
             if (health >= absDamage) {
                 health -= absDamage
                 Math.abs(absDamage)
                 println("Игрок ${this.name} получил урон. Здоровья осталось = ${this.health}")
             } else {
-                health = 0
+                killing()
                 println("Игрок ${this.name} умер. Его здоровье = ${this.health}")
             }
         }
     }
 
     fun getTreatment(treatment: Int) {
-        if (playerDeath()) {
+        if (isPlayerDead()) {
             if (treatment <= health) {
                 health += treatment
                 println("Игрок ${this.name} лечиться. Здоровья стало = ${this.health}")
             } else println("Лечение превышает максимальное значение здоровья. Здоровье = ${this.health}")
-        } else health = 0
+        } else {
+            killing()
+            println("Игрок ${this.name} умер. Его здоровье = ${this.health}")
+        }
     }
 
-    private fun playerDeath(): Boolean {
-        return if (health <= 0) {
-            println("Игрок ${this.name} умер. Его здоровье = ${this.health}")
-            false
-        } else true
+    private fun isPlayerDead(): Boolean = health > 0
+
+    private fun killing() {
+        health = 0
     }
 }
 
