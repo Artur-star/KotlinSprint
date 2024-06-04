@@ -5,86 +5,86 @@ const val MAX_NUMBER_PASSENGERS_IN_PASSENGER_CAR = 3
 const val MAX_LOAD_IN_TRUCK = 2
 
 interface Shipping {
-    fun loadCargo(cargo: Int, countCargo: MutableList<Int>)
-    fun unloadCargo(countCargo: MutableList<Int>)
+    fun loadCargo(cargo: Int)
+    fun unloadCargo()
 }
 
 interface PassengerTransportation {
-    fun loadPassengers(passenger: Int, listPassengers: MutableList<Int>)
-    fun unloadPassengers(listPassengers: MutableList<Int>)
+    fun loadPassengers(passenger: Int)
+    fun unloadPassengers()
 }
 
-interface MovementCars {
-    fun move(movement: Boolean) = false
-}
+class Truck(
+    val countCargo: MutableList<Int>,
+    val listPassengers: MutableList<Int>
+) : Shipping, PassengerTransportation {
 
-class Truck : Shipping, PassengerTransportation, MovementCars {
-
-    override fun loadCargo(cargo: Int, countCargo: MutableList<Int>) {
+    override fun loadCargo(cargo: Int) {
         if (cargo <= MAX_LOAD_IN_TRUCK) countCargo.add(cargo)
     }
 
-    override fun unloadCargo(countCargo: MutableList<Int>) {
+    override fun unloadCargo() {
         countCargo.removeLast()
     }
 
-    override fun loadPassengers(passenger: Int, listPassengers: MutableList<Int>) {
+    override fun loadPassengers(passenger: Int) {
         if (passenger <= MAX_NUMBER_PASSENGERS_IN_TRUCK) listPassengers.add(passenger)
     }
 
-    override fun unloadPassengers(listPassengers: MutableList<Int>) {
+    override fun unloadPassengers() {
         listPassengers.removeLast()
     }
 
-    override fun move(movement: Boolean) = movement
+    fun move(movement: Boolean) = movement
 }
 
-class PassengerCar : PassengerTransportation, MovementCars {
+class PassengerCar(
+    val listPassengers: MutableList<Int>
+) : PassengerTransportation {
 
-    override fun loadPassengers(passenger: Int, listPassengers: MutableList<Int>) {
+    override fun loadPassengers(passenger: Int) {
         if (passenger <= MAX_NUMBER_PASSENGERS_IN_PASSENGER_CAR) listPassengers.add(passenger)
     }
 
-    override fun unloadPassengers(listPassengers: MutableList<Int>) {
+    override fun unloadPassengers() {
         listPassengers.removeLast()
     }
 
-    override fun move(movement: Boolean) = movement
+    fun move(movement: Boolean) = movement
 }
 
 fun main() {
-    //Общее количество перевезенного груза и пассажиров
     val numberPassengersTransported: MutableList<Int> = mutableListOf()
     val numberCargoTransported: MutableList<Int> = mutableListOf()
 
-    //Количество груза и пассажиров при транспортировке в одном автомобиле
-    val listPassengers: MutableList<Int> = mutableListOf()
-    val countCargo: MutableList<Int> = mutableListOf()
+    val kamaz = Truck(mutableListOf(), mutableListOf())
 
-    val kamaz = Truck()
-
-    kamaz.loadCargo(2, countCargo)
-    kamaz.loadPassengers(1, listPassengers)
+    kamaz.loadCargo(2)
+    kamaz.loadPassengers(1)
     if (kamaz.move(true)) {
-        numberPassengersTransported.addAll(listPassengers)
-        kamaz.unloadPassengers(listPassengers)
-        numberCargoTransported.addAll(countCargo)
-        kamaz.unloadCargo(countCargo)
+        if (kamaz.listPassengers.isNotEmpty()) {
+            numberPassengersTransported.addAll(kamaz.listPassengers)
+            kamaz.unloadPassengers()
+        }
+        if (kamaz.countCargo.isNotEmpty()) {
+            numberCargoTransported.addAll(kamaz.countCargo)
+            kamaz.unloadCargo()
+        }
     }
 
-    val ladaGranta = PassengerCar()
+    val ladaGranta = PassengerCar(mutableListOf())
 
-    ladaGranta.loadPassengers(3, listPassengers)
-    if (ladaGranta.move(true)) {
-        numberPassengersTransported.addAll(listPassengers)
-        ladaGranta.unloadPassengers(listPassengers)
+    ladaGranta.loadPassengers(3)
+    if (ladaGranta.move(true) && ladaGranta.listPassengers.isNotEmpty()) {
+        numberPassengersTransported.addAll(ladaGranta.listPassengers)
+        ladaGranta.unloadPassengers()
     }
 
-    val ladaVesta = PassengerCar()
-    ladaVesta.loadPassengers(2, listPassengers)
-    if (ladaVesta.move(true)) {
-        numberPassengersTransported.addAll(listPassengers)
-        ladaVesta.unloadPassengers(listPassengers)
+    val ladaVesta = PassengerCar(mutableListOf())
+    ladaVesta.loadPassengers(2)
+    if (ladaVesta.move(true) && ladaVesta.listPassengers.isNotEmpty()) {
+        numberPassengersTransported.addAll(ladaVesta.listPassengers)
+        ladaVesta.unloadPassengers()
     }
 
     println("Количество перевезенных пассажиров: ${numberPassengersTransported.sum()}")
