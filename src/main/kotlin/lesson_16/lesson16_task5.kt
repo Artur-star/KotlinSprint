@@ -2,10 +2,12 @@ package lesson_16
 
 import kotlin.math.abs
 
+private const val MAX_HEALTH = 100
+
 class Player(
     private val name: String,
     private var health: Int,
-    private val strength: Int,
+    private var strength: Int,
 ) {
     fun takeDamage(damage: Int) {
         val absDamage = abs(damage)
@@ -23,10 +25,10 @@ class Player(
 
     fun getTreatment(treatment: Int) {
         if (isPlayerDead()) {
-            if (treatment <= health) {
+            if (treatment + health <= MAX_HEALTH) {
                 health += treatment
                 println("Игрок ${this.name} лечиться. Здоровья стало = ${this.health}")
-            } else println("Лечение превышает максимальное значение здоровья. Здоровье = ${this.health}")
+            } else println("Лечение превышает максимальное значение здоровья. Здоровья осталось = ${this.health}")
         } else {
             killing()
             println("Игрок ${this.name} умер. Его здоровье = ${this.health}")
@@ -37,6 +39,7 @@ class Player(
 
     private fun killing() {
         health = 0
+        strength = 0
     }
 }
 
