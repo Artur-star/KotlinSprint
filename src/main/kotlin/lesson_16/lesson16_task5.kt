@@ -2,57 +2,58 @@ package lesson_16
 
 import kotlin.math.abs
 
-private const val MAX_HEALTH = 100
-
 class Player(
     private val name: String,
+    private var maxHealth: Int,
     private var strength: Int,
 ) {
-    private var health: Int = MAX_HEALTH
+    var currentHealth: Int = maxHealth
 
     fun takeDamage(damage: Int) {
         val absDamage = abs(damage)
         if (isPlayerDead()) {
-            if (health >= absDamage) {
-                health -= absDamage
+            if (currentHealth >= absDamage) {
+                currentHealth -= absDamage
                 Math.abs(absDamage)
-                println("Игрок ${this.name} получил урон. Здоровья осталось = ${this.health}")
+                println("Игрок ${this.name} получил урон. Здоровья осталось = ${this.currentHealth}")
             } else {
                 killing()
-                println("Игрок ${this.name} умер. Его здоровье = ${this.health}")
+                println("Игрок ${this.name} умер. Его здоровье = ${this.currentHealth}")
             }
         }
     }
 
     fun getTreatment(treatment: Int) {
         if (isPlayerDead()) {
-            if (treatment + health <= MAX_HEALTH) {
-                health += treatment
-                println("Игрок ${this.name} лечиться. Здоровья стало = ${this.health}")
-            } else println("Лечение превышает максимальное значение здоровья. Здоровья осталось = ${this.health}")
+            if (treatment + currentHealth <= maxHealth) {
+                currentHealth += treatment
+                println("Игрок ${this.name} лечиться. Здоровья стало = ${this.currentHealth}")
+            } else println("Лечение превышает максимальное значение здоровья. Здоровья осталось = ${this.currentHealth}")
         } else {
             killing()
-            println("Игрок ${this.name} умер. Его здоровье = ${this.health}")
+            println("Игрок ${this.name} умер. Его здоровье = ${this.currentHealth}")
         }
     }
 
-    private fun isPlayerDead(): Boolean = health > 0
+    private fun isPlayerDead(): Boolean = currentHealth > 0
 
     private fun killing() {
-        health = 0
+        currentHealth = 0
         strength = 0
     }
 }
 
 fun main() {
-    val playerArt = Player("Art", 20)
+    val playerArt = Player("Art", 80, 20)
 
-    playerArt.takeDamage(50)
-    playerArt.getTreatment(100)
-    playerArt.takeDamage(40)
+    playerArt.takeDamage(10)
+    playerArt.getTreatment(50)
+    playerArt.takeDamage(20)
     playerArt.getTreatment(30)
     playerArt.takeDamage(60)
     playerArt.getTreatment(30)
     playerArt.getTreatment(20)
     playerArt.takeDamage(60)
+    playerArt.takeDamage(20)
+    playerArt.takeDamage(10)
 }
