@@ -6,9 +6,10 @@ private const val MAX_HEALTH = 100
 
 class Player(
     private val name: String,
-    private var health: Int,
     private var strength: Int,
 ) {
+    private var health: Int = MAX_HEALTH
+
     fun takeDamage(damage: Int) {
         val absDamage = abs(damage)
         if (isPlayerDead()) {
@@ -44,7 +45,7 @@ class Player(
 }
 
 fun main() {
-    val playerArt = Player("Art", 100, 20)
+    val playerArt = Player("Art", 20)
 
     playerArt.takeDamage(50)
     playerArt.getTreatment(100)
