@@ -1,21 +1,19 @@
 package lesson_17
 
-class Folder(_isSecret: Boolean, _name: String, _countFails: Int) {
-    val name = _name
+class Folder(val isSecret: Boolean, name: String, countFails: Int) {
+    val name = name
         get() {
             return if (isSecret) {
                 "Скрытая папка"
             } else field
         }
 
-    val countFails = _countFails
+    val countFails = countFails
         get() {
             return if (isSecret) {
                 0
             } else field
         }
-    private val isSecret = _isSecret
-
 }
 
 fun main() {
