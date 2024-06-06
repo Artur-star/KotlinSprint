@@ -1,19 +1,14 @@
 package lesson_17
 
-class Ship() {
-    var name: String = "Titanic"
+class Ship(var homePort: String, name: String, var speed: Int) {
+    var name: String = name
         set(value) {
-            if (value != field) {
-                println("Предупреждение! Название корабля менять запрещено.")
-            }
+            println("Предупреждение! Название корабля менять запрещено.")
         }
-
-    var homePort: String = "Liverpool"
-    var speed: Int = 42
 }
 
 fun main() {
-    val ship = Ship()
+    val ship = Ship("Titanic", "Liverpool", 42)
 
     ship.name = "Avrora"
     ship.speed = 40
