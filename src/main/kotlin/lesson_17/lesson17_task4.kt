@@ -12,7 +12,7 @@ class Package(
             field = value
         }
 
-    var movementCounter: Int = 1
+    var movementCounter: Int = 0
 }
 
 fun main() {
