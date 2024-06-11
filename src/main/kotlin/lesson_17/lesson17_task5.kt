@@ -11,12 +11,8 @@ class User(
         }
 
     var password = password
-        get():String {
-            val stringAsterisks: StringBuilder = StringBuilder()
-            for (i in 0 until field.length) {
-                stringAsterisks.append("*")
-            }
-            return stringAsterisks.toString()
+        get(): String {
+            return "*".repeat(field.length)
         }
         set(value) {
             println("Вы не можете изменить пароль")
