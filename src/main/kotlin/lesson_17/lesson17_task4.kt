@@ -2,11 +2,11 @@ package lesson_17
 
 class Package(
     val packageNumber: Int,
-    currentLocation: String,
+    initialLocation: String,
 ) {
-    var currentLocation: String = currentLocation
+    var initialLocation: String = initialLocation
         set(value) {
-            if (currentLocation != value) {
+            if (initialLocation != value) {
                 movementCounter++
             }
             field = value
@@ -17,8 +17,8 @@ class Package(
 
 fun main() {
     val pack = Package(1, "Moscow")
-    pack.currentLocation = "Ufa"
-    pack.currentLocation = "Kazan"
+    pack.initialLocation = "Ufa"
+    pack.initialLocation = "Kazan"
 
     println(pack.movementCounter)
 }
