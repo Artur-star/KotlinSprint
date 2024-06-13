@@ -1,26 +1,16 @@
 package lesson_18
 
-interface Dice {
-    fun rollDiceAndPrintValues()
-}
-
-class FourSidedDice : Dice {
-    override fun rollDiceAndPrintValues() {
-        println("Бросили кость с 4 гранями")
+open class Dice(val sides: Int) {
+    fun rollDice() {
+        println("Бросили кость с ${sides} гранями")
     }
 }
 
-class SixSidedDice : Dice {
-    override fun rollDiceAndPrintValues() {
-        println("Бросили кость с 6 гранями")
-    }
-}
+class FourSidedDice : Dice(4)
 
-class EightSidedDice : Dice {
-    override fun rollDiceAndPrintValues() {
-        println("Бросили кость с 8 гранями")
-    }
-}
+class SixSidedDice : Dice(6)
+
+class EightSidedDice : Dice(8)
 
 fun main() {
     val diceFourSided: Dice = FourSidedDice()
@@ -29,5 +19,5 @@ fun main() {
 
     val listDices = listOf<Dice>(diceFourSided, sixSidedDice, eightSidedDice)
 
-    listDices.forEach { it.rollDiceAndPrintValues() }
+    listDices.forEach { it.rollDice() }
 }
