@@ -1,8 +1,8 @@
 package lesson_18
 
-open class Animal {
-    open fun eat(): String = ""
-    open fun sleep(): String = ""
+abstract class Animal {
+    abstract fun eat(): String
+    abstract fun sleep(): String
 }
 
 class Fox(private val name: String) : Animal() {
