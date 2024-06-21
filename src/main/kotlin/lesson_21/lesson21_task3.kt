@@ -7,10 +7,7 @@ class Player(val name: String, var currentHealth: Int, val maxHealth: Int) {
     }
 }
 
-fun Player.isHealthy(): Boolean {
-    return if (currentHealth == maxHealth) true
-    else false
-}
+fun Player.isHealthy(): Boolean = currentHealth == maxHealth
 
 fun main() {
     val player1 = Player("Alex", 100, 100)
