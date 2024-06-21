@@ -2,15 +2,9 @@ package lesson_21
 
 fun main() {
     fun List<Int>.evenNumbersSum(): Int {
-        var sum = 0
-        for (i in 0 until size) {
-            if (this[i] % 2 == 0) {
-                sum += this[i]
-            }
-        }
-        return sum
+        return filter { it % 2 == 0 }.sum()
     }
 
-    val listInt = listOf(1, 2, 8)
+    val listInt = listOf(1, 2, 8, 5, 7)
     println(listInt.evenNumbersSum())
 }
