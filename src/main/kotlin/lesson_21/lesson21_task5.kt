@@ -1,15 +1,8 @@
 package lesson_21
 
-fun Map<String, Int>.maxCategory(): String {
-    val maxElementFromCategory = maxBy { it.value }
-    val listPoints: MutableList<String> = mutableListOf()
-    for (i in 0 until size) {
-        if (maxElementFromCategory.value == values.elementAt(i)) {
-            listPoints.add(keys.elementAt(i))
-        }
-    }
-    return listPoints.random()
-}
+fun Map<String, Int>.maxCategory(): String =
+    filter { maxElement -> maxElement.value == maxBy { element -> element.value }.value }.keys.shuffled().first()
+
 
 fun main() {
     val mapHeroes: MutableMap<String, Int> =
