@@ -18,9 +18,8 @@ fun main() {
         4.36
     )
 
-    val (namePlace, descriptionPlace, dateAndTime, distanceInLightYears) = alphaCentauri
-    println("Название галактики: $namePlace")
-    println("Описание галактики: $descriptionPlace")
-    println("дата и время события: $dateAndTime")
-    println("расстояние места или события от Земли в световых годах: $distanceInLightYears")
+    println("Название галактики: ${alphaCentauri.component1()}")
+    println("Описание галактики: ${alphaCentauri.component2()}")
+    println("дата и время события: ${alphaCentauri.component3()}")
+    println("расстояние места или события от Земли в световых годах: ${alphaCentauri.component4()}")
 }
