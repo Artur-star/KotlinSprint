@@ -1,41 +1,32 @@
 package lesson_22
 
-class ViewModel(val mainScreenState: MainScreenState) {
+class ViewModel {
+    private val data = ""
+    private val mainScreenState: MainScreenState = MainScreenState(data)
 
     data class MainScreenState(
-        val data: String,
+        var data: String,
         var isLoading: Boolean = false,
     )
 
-    fun loadData(isLoading: Boolean): MainScreenState {
-        mainScreenState.isLoading = isLoading
-        return mainScreenState.copy()
+    fun loadData(data: String): MainScreenState {
+        val state = mainScreenState.copy(isLoading = true)
+        mainScreenState.data = data
+        mainScreenState.isLoading = false
+        return state
     }
 
-    override fun toString(): String {
-        return "ViewModel(mainScreenState=$mainScreenState)"
-    }
-}
-
-class MainScreenViewModel(
-    val viewModel: ViewModel,
-) {
-    override fun toString(): String {
-        return "MainScreenViewModel(viewModel=$viewModel)"
+    fun loadData(): MainScreenState {
+        return mainScreenState
     }
 }
 
 fun main() {
-    val viewModel = ViewModel(ViewModel.MainScreenState("Отсутствие данных"))
-    val viewModel1 = ViewModel(ViewModel.MainScreenState("загрузка данных"))
-    val viewModel2 = ViewModel(ViewModel.MainScreenState("Наличие загруженных данных"))
+    val viewModel = ViewModel()
 
-    viewModel.loadData(true)
-    viewModel1.loadData(false)
-    viewModel2.loadData(true)
+    println("Отсутствие данных: ${viewModel.loadData()}")
+    println("Идет загрузка: ${viewModel.loadData("Загрузили данные")}")
+    println("Данные загружены: ${viewModel.loadData()}")
 
-    println(MainScreenViewModel(viewModel))
-    println(MainScreenViewModel(viewModel1))
-    println(MainScreenViewModel(viewModel2))
 }
 
